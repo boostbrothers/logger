@@ -41,13 +41,15 @@ dependencies {
   testImplementation deps.kotlin
 }
 
-publishing {
-  publications {
-    release(MavenPublication) {
-
-      groupId = 'com.github.bbros'
-      artifactId = 'logger'
-      version = '1.0.0'
+afterEvaluate {
+  publishing {
+    publications {
+      release(MavenPublication) {
+        from components.release
+        groupId = 'com.github.bbros'
+        artifactId = 'logger'
+        version = '1.0.0'
+      }
     }
   }
 }
