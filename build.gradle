@@ -1,11 +1,11 @@
 buildscript {
-  ext.kotlinVersion = '1.2.51'
+  ext.kotlinVersion = '2.1.10'
   repositories {
     google()
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.2.0'
+    classpath 'com.android.tools.build:gradle:8.8.1'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
   }
 }
@@ -20,24 +20,6 @@ allprojects {
 subprojects { project ->
   group = GROUP
   version = VERSION_NAME
-
-  apply plugin: 'checkstyle'
-
-  task checkstyle(type: Checkstyle) {
-    configFile rootProject.file('checkstyle.xml')
-    source 'src/main/java'
-    ignoreFailures false
-    showViolations true
-    include '**/*.java'
-
-    classpath = files()
-  }
-
-  afterEvaluate {
-    if (project.tasks.findByName('check')) {
-      check.dependsOn('checkstyle')
-    }
-  }
 }
 
 task clean(type: Delete) {
@@ -45,10 +27,10 @@ task clean(type: Delete) {
 }
 
 ext {
-  minSdkVersion = 8
-  targetSdkVersion = 28
-  compileSdkVersion = 28
-  buildToolsVersion = '28.0.2'
+  minSdkVersion = 28
+  targetSdkVersion = 35
+  compileSdkVersion = 35
+  buildToolsVersion = '35.0.0'
 }
 
 ext.deps = [

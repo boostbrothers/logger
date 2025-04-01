@@ -1,15 +1,15 @@
 language: android
-jdk: oraclejdk8
+jdk: openjdk17
 
 android:
   components:
     - tools
     - platform-tools
-    - build-tools-27.0.3
-    - android-27
+    - build-tools-35.0.0
+    - android-35
 
 before_install:
-  - yes | sdkmanager "platforms;android-27"
+  - yes | sdkmanager "platforms;android-35"
 
 script:
 - ./gradlew check

@@ -1,12 +1,23 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
+  namespace 'com.github.boostbrothers.logger'
+
   compileSdkVersion rootProject.ext.compileSdkVersion
   buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
     minSdkVersion rootProject.ext.minSdkVersion
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
   }
 
   lintOptions {
@@ -30,4 +41,13 @@ dependencies {
   testImplementation deps.kotlin
 }
 
-apply from: rootProject.file('gradle/maven_push.gradle')
+publishing {
+  publications {
+    release(MavenPublication) {
+
+      groupId = 'com.github.bbros'
+      artifactId = 'logger'
+      version = '1.0.0'
+    }
+  }
+}
